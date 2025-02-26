@@ -1,0 +1,12 @@
+@forward './variables';
+@forward './mixin';
+@forward './base';
+
+//Componentes
+@forward './Componentes/Cabecera.scss';
+@forward './Componentes/Modales.scss';
+@forward './Componentes/Heroe.scss';
+@forward './Componentes/ProductosDestacados.scss';
+@forward './Componentes/Ofertas.scss';
+@forward './Componentes/Formulario.scss';
+@forward './Componentes/footer.scss';

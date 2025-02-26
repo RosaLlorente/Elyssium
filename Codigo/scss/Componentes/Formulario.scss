@@ -1,0 +1,26 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+@use "../Componentes/form.scss" as *;
+
+/// **Sección Contacto**
+/// Estiliza la sección de contacto con un fondo en gradiente y alineación centrada.
+/// @author Rosa Maria Llorente Mojica
+/// @group Contacto
+#Contacto {
+    /// **Propiedades generales**
+    /// - `text-align: center;` centra el contenido de la sección.
+    /// - `padding: 1em;` añade espaciado interno uniforme.
+    /// - `background: linear-gradient(26deg, Colores(secundario) 50%, Colores(primario) 50%);`
+    ///   crea un fondo en degradado con dos colores de la paleta.
+    text-align: center;
+    padding: 1em;
+    background: linear-gradient(26deg, Colores(secundario) 50%, Colores(primario) 50%);
+
+    /// **Encabezado dentro de Contacto**
+    /// - Usa `Colores(secundario);` como color del texto.
+    /// - Tiene un margen inferior de `1.5rem` para separación visual.
+    h2 {
+        color: Colores(secundario);
+        margin-bottom: 1.5rem;
+    }
+}

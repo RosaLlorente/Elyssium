@@ -1,0 +1,145 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+@use "../Componentes/form.scss" as *;
+
+/// **Estilos del modal**
+/// Este modal se usa para formularios de inicio de sesión, registro u otros propósitos.
+/// Se encuentra oculto por defecto y aparece cuando es activado por JavaScript.
+/// @author Rosa Maria Llorente Mojica
+/// @group Modal
+.modal {
+    /// **Propiedades generales**
+    /// - `display: none;` para ocultarlo por defecto.
+    /// - `position: fixed;` para que flote sobre el contenido.
+    /// - `z-index: 1000;` para asegurar que esté por encima de otros elementos.
+    /// - `background-color: Colores(septario);` para oscurecer el fondo.
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: Colores(septario);
+    padding-top: 1rem;
+
+    /// **Contenido del modal**
+    /// - Fondo blanco con sombras para resaltar sobre el fondo oscuro.
+    /// - Bordes redondeados y tamaño limitado (`max-width: 25em`).
+    &-content {
+        background-color: Colores(cuaternario);
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid Colores(quintario);
+        width: 80%;
+        max-width: 25em;
+        border-radius: 0.4rem;
+        text-align: center;
+        box-shadow: 0 4px 10px Colores(efecto2);
+
+        /// **Encabezado dentro del modal**
+        /// - `font-size: 1.5rem;` para destacar el título.
+        /// - `color: Colores(primario);` para mantener coherencia visual.
+        h2 {
+            font-size: 1.5rem;
+            color: Colores(primario);
+            margin-bottom: 1rem;
+        }
+    }
+
+    /// **Botón de cierre**
+    /// - Posicionado en la esquina superior derecha.
+    /// - Cambio de color al pasar el cursor para mejorar usabilidad.
+    .close {
+        color: Colores(quintario);
+        float: right;
+        font-size: TamanosTexto(m);
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            color: Colores(primario);
+            text-decoration: none;
+        }
+    }
+
+    /// **Línea divisoria**
+    /// - Separador visual dentro del modal.
+    .linea {
+        height: 0.1rem;
+        background: Colores(quintario);
+        margin: 1rem 0;
+    }
+
+    /// **Párrafos de información dentro del modal**
+    /// - Fuente más pequeña y en color terciario.
+    p {
+        font-size: TamanosTexto(parrafos);
+        color: Colores(terciario);
+        font-weight: bold;
+    }
+
+    /// **Opciones adicionales dentro del modal**
+    /// - Permite agregar iconos de redes sociales u otros métodos de acceso.
+    /// - Usa `flexbox` para alinear los elementos.
+    .OtrasOpciones {
+        @include flexposition(row, center, space-between);
+        gap: 1rem;
+
+        /// **Iconos dentro de los enlaces**
+        a {
+            svg {
+                width: 2.5em;
+                height: 2.5em;
+            }
+        }
+    }
+
+    /// **Información adicional**
+    /// - Puede incluir enlaces a términos y condiciones.
+    .informacion {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+
+        /// **Estilos para enlaces dentro del modal**
+        /// - Cambio de color al pasar el cursor.
+        a {
+            color: Colores(link);
+            text-decoration: underline;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: Colores(secundario);
+                text-decoration: underline;
+                background-color: Colores(terciario);
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+}
+
+/// **Botón del modal**
+/// - Botón principal para acciones como "Enviar", "Aceptar", etc.
+/// - `width: 100%;` para que ocupe todo el ancho disponible.
+/// - Cambio de color en el `hover` para mejorar la experiencia del usuario.
+/// @author Rosa Maria Llorente Mojica
+/// @group Botones
+.modal-button {
+    background-color: Colores(secundario);
+    color: Colores(cuaternario);
+    padding: 0.1rem 0.2rem;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: Colores(secundario);
+    }
+}

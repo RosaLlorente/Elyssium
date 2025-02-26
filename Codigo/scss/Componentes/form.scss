@@ -1,0 +1,93 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+/// **Estilos para formularios**  
+/// Contiene los estilos reutilizables para formularios de contacto, registro e inicio de sesión.
+/// Se incluyen mixins para estructura, validación y estilos de botones.
+/// @author Rosa Maria Llorente Mojica
+/// @group Formularios
+
+/// **Formularios generales**
+/// Se aplican estilos base a los formularios de contacto, registro e inicio de sesión.
+/// Se incluyen los mixins `form-container` y `form-validation`.
+/// @author Rosa Maria Llorente Mojica
+.contact-form,
+.register-form,
+.login-form {
+    @include form-container;
+    @include form-validation;
+}
+
+/// **Formulario de contacto**
+/// Se aplica un fondo semitransparente con `backdrop-filter` para un efecto de desenfoque.
+/// Se usa el mixin `form-group` para los campos de entrada.
+/// El botón usa `form-button` para mantener coherencia en el diseño.
+/// @author Rosa Maria Llorente Mojica
+/// @group Formulario de Contacto
+.contact-form {
+    background: Colores(septario);
+    backdrop-filter: blur(5px);
+    gap: 1rem;
+
+    /// **Grupo de entrada**
+    /// Usa el mixin `form-group` para mantener estilos coherentes.
+    .input-group {
+        @include form-group;
+    }
+
+    /// **Botón del formulario de contacto**
+    /// - Aplica el mixin `form-button` para mantener estilos homogéneos.
+    button {
+        @include form-button;
+    }
+
+    /// **Texto adicional del formulario**
+    /// - Usa `Colores(terciario)` como color.
+    /// - Se agrega `font-weight: bold;` para resaltar la información.
+    .informacion {
+        font-size: 0.9rem;
+        color: Colores(terciario);
+        font-weight: bold;
+        margin-top: 1rem;
+    }
+}
+
+/// **Formularios de Registro e Inicio de Sesión**
+/// - Los `label` se alinean a la izquierda con `text-align: left;`.
+/// - Los `input` tienen un borde con transición de color al enfocarse.
+/// - Se usa `form-button` en el botón de envío.
+/// @author Rosa Maria Llorente Mojica
+/// @group Formulario de Registro y Login
+.register-form,
+.login-form {
+    label {
+        display: block;
+        margin: 0.5rem 0 0.2rem;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid Colores(septario);
+        border-radius: 0.4rem;
+        transition: border-color 0.3s ease;
+
+        /// **Efecto al enfocar (focus)**
+        /// - Cambia el borde al color `Colores(secundario)`.
+        /// - Elimina el `outline` para una apariencia más limpia.
+        &:focus {
+            border-color: Colores(secundario);
+            outline: none;
+        }
+    }
+
+    /// **Botón de los formularios**
+    /// - Aplica el mixin `form-button` para mantener el diseño uniforme.
+    /// @author Rosa Maria Llorente Mojica
+    button {
+        @include form-button;
+    }
+}

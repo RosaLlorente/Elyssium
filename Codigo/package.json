@@ -1,0 +1,23 @@
+{
+    "name": "JoyeriaElyssium",
+    "version": "1.0.0",
+    "description": "JoyeriaElyssium",
+    "main": "index.js",
+    "scripts": {
+        "watch": "sass --watch scss/style.scss:css/style.css"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "browser-sync": "^3.0.3",
+        "gulp": "^5.0.0",
+        "gulp-autoprefixer": "^9.0.0",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-postcss": "^10.0.0",
+        "gulp-sass": "^6.0.0",
+        "postcss-preset-env": "^10.1.5",
+        "sass": "^1.85.1",
+        "sassdoc": "^2.7.4"
+    }
+}

@@ -1,0 +1,45 @@
+@use "../variables" as *;
+@use "../mixin" as *;
+@use "../Componentes/cards.scss" as *;
+
+/// **Sección de productos destacados**
+/// Muestra una lista de productos con un diseño adaptable (responsive).
+/// Usa `cards.scss` para el diseño de cada producto.
+/// @author Rosa Maria Llorente Mojica
+/// @group Secciones
+.productos-destacados {
+    /// **Centrado del texto y espaciado de la sección.**
+    /// - Aplica `text-align: center;` para centrar el contenido.
+    /// - Agrega `padding: 2rem;` para dar margen interno.
+    /// - Usa el color primario del sitio como fondo.
+    background-color: Colores(primario);
+    text-align: center;
+    padding: 2rem;
+
+    /// **Encabezado de la sección**
+    /// - Usa el color secundario de la paleta.
+    /// - Aplica el tamaño de fuente definido en `TamanosTexto(xl)`.
+    /// - Agrega margen inferior de `2rem` para separación visual.
+    h2 {
+        color: Colores(secundario);
+        font-size: TamanosTexto(xl);
+        margin-bottom: 2rem;
+    }
+
+    /// **Contenedor de productos**
+    /// - Se usa `flexbox` para distribuir los productos horizontalmente con `space-between`.
+    /// - Aplica un `gap` de `2rem` para separar los elementos.
+    .content {
+        @include flexposition(row, center, space-between);
+        gap: 2rem;
+    }
+
+    /// **Versión móvil**
+    /// - Cambia la disposición de los productos de `row` a `column`.
+    /// - Centra los elementos para mejor legibilidad en pantallas pequeñas.
+    @include mobile {
+        .content {
+            @include flexposition(column, center, center);
+        }
+    }
+}

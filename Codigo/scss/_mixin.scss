@@ -1,0 +1,327 @@
+@use './variables' as *;
+
+/// **Genera estilos para los encabezados `h1` hasta `h6` y clases `.h1` hasta `.h6`**
+/// Aplica la fuente del título y el color secundario de la paleta.
+/// @author Rosa Maria Llorente Mojica
+/// @group Tipografía
+/// @example
+/// .body {
+///     @include GenerarCabeceras();
+/// }
+@mixin GenerarCabeceras() {
+    font-family: Fuentes(titulo);
+    color: Colores(secundario);
+
+    @for $i from 1 through 6 {
+        h#{$i}, .h#{$i} {
+            @if $i == 1 {
+                font-size: TamanosTexto(xxl);
+            } @else if $i == 2 {
+                font-size: TamanosTexto(xl);
+            } @else if $i == 3 {
+                font-size: TamanosTexto(l);
+            } @else if $i == 4 {
+                font-size: TamanosTexto(m);
+            } @else if $i == 5 {
+                font-size: TamanosTexto(s);
+            } @else if $i == 6 {
+                font-size: TamanosTexto(xs);
+            }
+        }
+    }
+    @include mobile() {
+        @for $i from 1 through 6 {
+            h#{$i}, .h#{$i} {
+                @if $i == 1 {
+                    font-size: TamanosTexto(mobilexxl) !important;
+                } @else if $i == 2 {
+                    font-size: TamanosTexto(mobilexl)  !important;
+                } @else if $i == 3 {
+                    font-size: TamanosTexto(mobilel)  !important;
+                } @else if $i == 4 {
+                    font-size: TamanosTexto(mobilem)  !important;
+                } @else if $i == 5 {
+                    font-size: TamanosTexto(mobiles)  !important;
+                } @else if $i == 6 {
+                    font-size: TamanosTexto(mobilexs)  !important;
+                }
+            }
+        }
+    }
+}
+
+/// **Mixin para generar `display: flex` con opciones de dirección, alineación y justificación**
+/// @author Rosa Maria Llorente Mojica
+/// @param {String} $direction - Dirección del `flex` (row, column, row-reverse, column-reverse).
+/// @param {String} $justifyContent - Alineación en el eje principal.
+/// @param {String} $alignItems - Alineación en el eje secundario.
+/// @group Diseño
+/// @example
+/// .content {
+///     @include flexposition(row, center, space-between);
+/// }
+@mixin flexposition($direction: row, $justifyContent, $alignItems) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+}
+
+/// **Estilos para enlaces con efecto hover**
+/// @author Rosa Maria Llorente Mojica
+/// @param {Color} $color - Color inicial del enlace.
+/// @param {Color} $hoverColor - Color del texto en hover.
+/// @param {Color} $hoverBg - Color de fondo en hover.
+/// @group Enlaces
+/// @example
+/// a {
+///     @include link-style(Colores(secundario), Colores(primario), Colores(cuaternario));
+/// }
+@mixin link-style($color, $hoverColor, $hoverBg) {
+    text-decoration: none;
+    color: $color;
+    font-weight: bold;
+    transition: all 1s ease;
+
+    &:hover {
+        @include color-texto-hover($hoverColor, $hoverBg);
+    }
+}
+
+/// **Mixin para menú móvil**
+/// @author Rosa Maria Llorente Mojica
+/// Se oculta por defecto y se posiciona en la parte superior.
+/// @group Menú
+/// @example
+/// .menu-toggle {
+///     @include mobile-menu;
+///         @include mobile-menu;
+///     }
+/// }
+@mixin mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 1em;
+    left: 0;
+    width: 100%;
+    background-color: Colores(primario);
+    text-align: center;
+}
+
+/// **Aplica efecto hover con cambio de fondo y texto**
+/// @author Rosa Maria Llorente Mojica
+/// @param {Color} $colorFondo - Color de fondo en hover.
+/// @param {Color} $colorTexto - Color del texto en hover.
+/// @group Enlaces
+/// @example
+/// &:hover {
+///     @include color-texto-hover(Colores(secundario), Colores(primario));
+/// }
+@mixin color-texto-hover($colorFondo, $colorTexto) {
+    &:hover {
+        color: $colorTexto;
+        background-color: $colorFondo;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 1s ease;
+    }
+}
+
+/// **Mixin para videos en modo `cover`**
+/// Ajusta un video a pantalla completa sin distorsión.
+/// @author Rosa Maria Llorente Mojica
+/// @group Multimedia
+/// @example
+/// &-video {
+///     @include video-cover;
+/// }
+@mixin video-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/// **Animación de Resplandor**
+/// - Crea un efecto de brillo en el texto del Héroe.
+/// - Dura `3s` y se ejecuta infinitamente.
+/// - Se usa con `@include animacion-resplandor;`.
+/// @author Rosa Maria Llorente Mojica
+/// @group Animaciones
+/// @example
+/// animacion-resplandor {
+///     @include animacion-resplandor;
+/// }
+@keyframes Resplandor {
+    0% {
+        text-shadow: none;
+    }
+    50% {
+        text-shadow:
+            0px 0px 15px Colores(efecto1),
+            0px 0px 20px Colores(efecto2),
+            0px 0px 30px Colores(efecto3);
+    }
+    100% {
+        text-shadow: none;
+    }
+}
+
+/// **Mixin para aplicar la animación de resplandor**
+/// - Agrega un efecto de brillo a los textos.
+/// - Utiliza la animación `Resplandor`.
+/// - Se ejecuta de forma infinita con `ease-out`.
+/// @author Rosa Maria Llorente Mojica
+/// @group Animaciones
+/// @example
+/// .ContentText {
+///     @include animacion-resplandor;
+/// }
+@mixin animacion-resplandor {
+    animation: Resplandor 3s infinite ease-out forwards;
+}
+
+
+
+/// **Contenedor de formularios con ancho máximo y centrado**
+/// @author Rosa Maria Llorente Mojica
+/// @group Formularios
+/// @example
+/// .contact-form
+/// .register-form
+/// .login-form {
+///     @include form-container;
+/// }
+@mixin form-container {
+    max-width: 37.5em;
+    padding: 1em;
+    margin: auto;
+    @include flexposition(column, center, none);
+}
+
+/// **Estilos básicos para `form-group` con etiquetas y campos**
+/// @author Rosa Maria Llorente Mojica
+/// @group Formularios
+/// @example
+/// .input-group {
+///     @include form-group;
+/// }
+@mixin form-group {
+    @include flexposition(column, center, none);
+    gap: 0.5rem;
+
+    label {
+        font-weight: bold;
+        color: Colores(secundario);
+    }
+
+    input,
+    textarea {
+        padding: 0.8rem;
+        border: 0.1em solid Colores(cuaternario);
+        border-radius: 0.4rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+
+        &:focus {
+            border: 0.2em solid Colores(secundario);
+            outline: none;
+        }
+    }
+
+    textarea {
+        resize: vertical;
+    }
+}
+
+/// **Botón estilizado para formularios**
+/// Aplica colores, transiciones y estilos responsivos.
+/// @author Rosa Maria Llorente Mojica
+/// @group Formularios
+/// @example
+/// button {
+///     @include form-button;
+/// }
+@mixin form-button {
+    background-color: Colores(primario);
+    color: Colores(secundario);
+    border: none;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 1s ease;
+
+    &:hover {
+        background-color: Colores(secundario);
+        color: Colores(cuaternario);
+        font-weight: bold;
+    }
+
+    @include mobile {
+        width: 100%;
+        padding: 1rem;
+    }
+}
+
+/// **Validaciones visuales para inputs de formularios**
+/// @author Rosa Maria Llorente Mojica
+/// @group Formularios
+/// @example
+/// .contact-form
+/// .register-form
+/// .login-form {
+///     @include form-validation;
+/// }
+@mixin form-validation {
+    input:valid,
+    select:valid {
+        background-color: Colores(FondoCorrecto);
+        border: 1px solid Colores(Correcto);
+    }
+
+    input:invalid[required],
+    input:invalid {
+        background-color: Colores(FondoIncorrecto);
+        border: 1px solid Colores(Incorrecto);
+    }
+
+    input:not([required]):valid {
+        background-color: Colores(FondoCorrecto);
+        border: 1px solid Colores(Correcto);
+    }
+}
+
+/// **Media query para móviles (`max-width: 768px`)**
+/// @author Rosa Maria Llorente Mojica
+/// @group Responsivo
+/// @example
+/// mobile {
+///   .carrousel {
+///     width: 100%;
+///   }
+/// }
+@mixin mobile {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+/// **Media query para escritorio (`min-width: 769px`)**
+/// @author Rosa Maria Llorente Mojica
+/// @group Responsivo
+/// @example
+/// desktop {
+///  .carrousel {
+///     width: 80%;
+///   }
+/// }
+@mixin desktop {
+    @media (min-width: 769px) {
+        @content;
+    }
+}

@@ -1,0 +1,114 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+/// **Estilos para el footer**  
+/// Se definen los estilos generales del footer, incluyendo la disposición del contenido,
+/// colores, tamaños y adaptabilidad a distintos dispositivos.
+/// @author Rosa Maria Llorente Mojica
+/// @group Footer
+
+footer {
+    background-color: Colores(primario);
+    color: Colores(cuaternario);
+    @include flexposition(column, center, center);
+    padding: 2rem;
+
+    /// **Logo del footer**
+    /// - Tamaño del contenedor: `7em`
+    .footer-logo {
+        width: 7em;
+        
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    /// **Contenido del footer**
+    /// - Se distribuye en **fila con espacio entre elementos**.
+    /// - Contiene información general, métodos de pago, redes sociales y enlaces legales.
+    .footer-content {
+        width: 100%;
+        @include flexposition(row, center, space-between);
+        gap: 2rem;
+        
+        /// **Sección de información**
+        /// - Contiene párrafos con información relevante.
+        .footer-info {
+            p {
+                font-size: TamanosTexto(parrafos);
+            }
+        }
+
+        /// **Sección de métodos de pago**
+        /// - Incluye íconos de los métodos de pago disponibles.
+        .footer-payment {
+            p {
+                font-size: TamanosTexto(parrafos);
+            }
+
+            /// **Íconos de pago**
+            /// - Se organizan en fila con espacio entre ellos.
+            .payment-icons {
+                @include flexposition(row, center, space-between);
+                gap: 1rem;
+                
+                svg {
+                    width: 2em;
+                    height: 2em;
+                }
+            }   
+        }
+
+        /// **Sección de redes sociales**
+        /// - Contiene íconos con enlaces a redes sociales.
+        .footer-social {
+            p {
+                font-size: TamanosTexto(parrafos);
+            }
+
+            /// **Íconos de redes sociales**
+            /// - Se organizan en fila con espacio entre ellos.
+            .social-links {
+                @include flexposition(row, center, space-between);
+                gap: 1rem;
+                
+                svg {
+                    width: 2em;
+                    height: 2em;
+                }
+            }
+        }
+
+        /// **Sección legal**
+        /// - Contiene enlaces a términos de uso y política de privacidad.
+        .footer-legal {
+            @include flexposition(column, center, center);
+            gap: 1rem;
+
+            p {
+                font-size: TamanosTexto(parrafos);
+            }
+
+            a {
+                font-size: TamanosTexto(parrafos);
+                color: Colores(link);
+            }
+        }
+    }
+}
+
+/// **Estilos responsivos para móviles**
+/// - Ajusta la disposición del contenido a `column` en pantallas pequeñas.
+/// @author Rosa Maria Llorente Mojica
+/// @group Footer - Responsive
+@include mobile {
+    footer {
+        @include flexposition(column, center, center);
+
+        .footer-content {
+            @include flexposition(column, center, center);
+            gap: 1rem;
+        }
+    }
+}

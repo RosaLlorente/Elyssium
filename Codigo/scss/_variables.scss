@@ -1,0 +1,150 @@
+@use "sass:map";
+
+/// @author Rosa Maria Llorente Mojica
+/// @group Configuración
+/// Importación de fuentes externas de Google
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+/// **Paleta de colores de la tienda**
+/// @author Rosa Maria Llorente Mojica
+/// @group Configuración
+$Colors: (
+    /// Color principal
+    /// @type Color
+    primario: #000000,
+
+    /// Color secundario (Dorado)
+    /// @type Color
+    secundario: #D4AF37,
+
+    /// Color de fondo oscuro
+    /// @type Color
+    terciario: #2C2C2C,
+
+    /// Color blanco
+    /// @type Color
+    cuaternario: #FFFFFF,
+
+    /// Tonos adicionales
+    /// @type Color
+    quintario: #b0a4a4,
+    sextario: #483a05,
+    septario: #42403ce0,
+
+    /// Efectos de resplandor
+    /// @type Color
+    efecto1: #ffd9008d,
+    efecto2: #ffec8b87,
+    efecto3: #b8870b84,
+
+    /// Colores para estados
+    /// @type Color
+    link: #007BFF,
+    Incorrecto: #ff0000,
+    Correcto: #00ff00,
+    FondoIncorrecto: #ffeeee,
+    FondoCorrecto: #eeffee
+);
+
+/// **Función para obtener colores de la paleta**
+/// @author Rosa Maria Llorente Mojica
+/// @param {String} $ColorsName - Nombre del color en la paleta.
+/// @return {Color} Retorna el color correspondiente.
+@function Colores($ColorsName) {
+    @return map.get($Colors, $ColorsName);
+}
+
+/// **Familias tipográficas utilizadas en la tienda**
+/// @author Rosa Maria Llorente Mojica
+/// @group Configuración
+$FontFamily: (
+    /// Fuente para títulos
+    /// @type Font
+    titulo: "Cinzel Decorative",
+
+    /// Fuente para texto general
+    /// @type Font
+    texto: "Montserrat",
+
+    /// Fuente para resaltar contenido
+    /// @type Font
+    resaltar: "Roboto Condensed"
+);
+
+/// **Función para obtener fuentes**
+/// @author Rosa Maria Llorente Mojica
+/// @param {String} $FontFamilyName - Nombre de la fuente.
+/// @return {String} Retorna la fuente correspondiente.
+@function Fuentes($FontFamilyName) {
+    @return map.get($FontFamily, $FontFamilyName);
+}
+
+/// **Tamaños de fuentes utilizados en la tienda**
+/// @author Rosa Maria Llorente Mojica
+/// @group Configuración
+$FontSize: (
+    /// Extra Extra Grande (8rem)
+    /// @type Size
+    xxl: 8rem,
+
+    /// Extra Grande (3rem)
+    /// @type Size
+    xl: 3rem,
+
+    /// Grande (2.5rem)
+    /// @type Size
+    l: 2.5rem,
+
+    /// Mediano (2rem)
+    /// @type Size
+    m: 2rem,
+
+    /// Pequeño (1rem)
+    /// @type Size
+    s: 1rem,
+
+    /// Extra Pequeño (2rem)
+    /// @type Size
+    xs: 2rem,
+
+    /// Tamaño para párrafos (1rem)
+    /// @type Size
+    parrafos: 1rem,
+
+    /// **Tamaño para vista movil**
+    /// Extra Extra Grande (2.5rem)
+    /// @type Size
+    mobilexxl: 2.5rem,
+
+    /// Extra Grande (2rem)
+    /// @type Size
+    mobilexl: 1.5rem,
+
+    /// Grande (1.5rem)
+    /// @type Size
+    mobilel: 1.5rem,
+
+    /// Mediano (1.25rem)
+    /// @type Size
+    mobilem: 1.25rem,
+
+    /// Pequeño (1rem)
+    /// @type Size
+    mobiles: 1rem,
+
+    /// Extra Pequeño (0.8rem)
+    /// @type Size
+    mobilexs: 0.8rem,
+
+    /// Tamaño para párrafos (0.3rem)
+    /// @type Size
+    mobileparrafos: 0.7rem
+);
+
+/// **Función para obtener tamaños de fuente**
+/// @author Rosa Maria Llorente Mojica
+/// @param {String} $FontSizeName - Nombre del tamaño de fuente.
+/// @return {Size} Retorna el tamaño de fuente correspondiente.
+@function TamanosTexto($FontSizeName) {
+    @return map.get($FontSize, $FontSizeName);
+}

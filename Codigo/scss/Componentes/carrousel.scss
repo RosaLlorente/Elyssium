@@ -1,0 +1,108 @@
+@use "../variables" as *;
+@use "../mixin" as *;
+@use "../Componentes/cards.scss" as *;
+
+/// **Sección de ofertas**  
+/// Contiene estilos para mostrar un carrusel de productos en oferta.
+/// @author Rosa Maria Llorente Mojica
+/// @group Ofertas
+
+#Ofertas {
+    padding: 2rem;
+    text-align: center;
+    background-color: Colores(primario);
+
+    /// **Título de la sección**
+    /// - Tamaño definido por `TamanosTexto(xl)`.
+    /// - Color `Colores(secundario)`.
+    h2 {
+        font-size: TamanosTexto(xl);
+        color: Colores(secundario);
+        margin-bottom: 1rem;
+    }
+
+    /// **Carrusel de ofertas**
+    /// - Se adapta a distintos dispositivos.
+    .carrousel {
+        position: relative;
+        padding: 4rem;
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+
+        @include flexposition(row, center, center);
+
+        /// **Contenedor del carrusel**
+        /// - Se usa `display: flex` para animaciones de desplazamiento.
+        /// @author Rosa Maria Llorente Mojica
+        .carrousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        /// **Elemento del carrusel**
+        /// - Se ajusta la alineación y los márgenes para su correcta visualización.
+        .carrousel-item {
+            @include flexposition(column, center, center);
+            margin: 0 30rem; 
+            flex-shrink: 0;
+            width: 15.625em;
+            transition: opacity 0.5s ease;
+
+            @include mobile {
+                width: 100%; 
+                margin: 0 1.5rem;
+            }
+        }
+
+        /// **Botones de navegación del carrusel**
+        /// - `prev-btn`: Botón para retroceder.
+        /// - `next-btn`: Botón para avanzar.
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            background: transparent;
+
+            /// **Icono SVG dentro del botón**
+            svg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            &:hover {
+                background-color: Colores(terciario);
+                border-radius: 0.5em;
+            }
+        }
+
+        /// **Ubicación de los botones**
+        .prev-btn {
+            left: 0.5em;
+        }
+
+        .next-btn {
+            right: 0.5em;
+        }
+    }
+
+    /// **Diseño responsivo para móviles**
+    /// - Se ajusta el ancho del carrusel.
+    /// @group Ofertas - Responsive
+    @include mobile {
+        .carrousel {
+            width: 50%;
+        }
+    }
+
+    /// **Diseño responsivo para pantallas grandes**
+    @include desktop {
+        .carrousel {
+            width: 80%;
+        }
+    }
+}

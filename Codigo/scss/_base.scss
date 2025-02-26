@@ -1,0 +1,38 @@
+@use './variables' as *;
+@use './mixin' as *;
+
+/// **Establece estilos globales para todos los elementos y su pseudo-elementos `before` y `after`.**
+/// Resetea los márgenes y el padding.
+/// @author Rosa Maria Llorente Mojica
+/// @group Reset
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+/// **Controla el comportamiento del scroll en la página.**
+/// - Activa el **scroll suave** (`smooth`) para una navegación fluida.
+/// - Ajusta la posición del scroll para evitar que elementos fijos tapen el contenido.
+/// @author Rosa Maria Llorente Mojica
+/// @group Diseño Global
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 77px; // Ajustar según el tamaño del header fijo
+}
+
+/// **Estilos globales del cuerpo (`body`).**
+/// - Elimina márgenes y padding predeterminados.
+/// - Asegura el modelo de caja correcto (`box-sizing: border-box`).
+/// - Aplica la fuente principal definida en `variables.scss`.
+/// - Genera estilos de encabezados automáticamente con `@include GenerarCabeceras()`.
+/// @author Rosa Maria Llorente Mojica
+/// @group Diseño Global
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Fuentes(texto);
+    @include GenerarCabeceras();
+}

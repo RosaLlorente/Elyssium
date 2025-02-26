@@ -1,0 +1,46 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+@use "../Componentes/cards.scss" as *;
+@use "../Componentes/carrousel.scss" as *;
+
+/// **Sección de Ofertas**
+/// Muestra las ofertas destacadas en la tienda.
+/// Incluye un `carrousel` para destacar productos en promoción.
+/// @author Rosa Maria Llorente Mojica
+/// @group Secciones
+#Ofertas {
+    /// **Espaciado y alineación**
+    /// - `padding: 2rem;` para margen interno.
+    /// - `text-align: center;` para centrar el contenido.
+    /// - `background-color: Colores(primario);` para fondo oscuro.
+    padding: 2rem;
+    text-align: center;
+    background-color: Colores(primario);
+
+    /// **Encabezado de la sección**
+    /// - Define el tamaño de la fuente según `TamanosTexto(xl)`.
+    /// - Usa el color secundario de la paleta (`Colores(secundario)`).
+    /// - Agrega `margin-bottom: 1rem;` para separar del contenido.
+    h2 {
+        font-size: TamanosTexto(xl);
+        color: Colores(secundario);
+        margin-bottom: 1rem;
+    }
+}
+
+/// **Responsividad del Carrousel**
+/// - En móviles (`max-width: 768px`), el `carrousel` ocupa el 100% del ancho.
+/// - En escritorio (`min-width: 769px`), el `carrousel` ocupa el 80% para centrarlo.
+/// @author Rosa Maria Llorente Mojica
+/// @group Responsive
+@include mobile {
+    .carrousel {
+        width: 100%;
+    }
+}
+
+@include desktop {
+    .carrousel {
+        width: 80%;
+    }
+}

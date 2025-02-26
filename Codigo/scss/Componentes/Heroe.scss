@@ -1,0 +1,77 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+/// **Sección Heroe**
+/// Este `#Heroe` representa la sección principal de la página con un video de fondo y texto animado.
+/// Se adapta a diferentes tamaños de pantalla con `@include mobile`.
+/// @author Rosa Maria Llorente Mojica
+/// @group Heroe
+#Heroe {
+    /// **Propiedades generales**
+    /// - `height: 100vh;` asegura que ocupe toda la altura de la pantalla.
+    /// - `position: relative;` para posicionamiento interno de elementos.
+    /// - `@include flexposition(row, center, center);` centra su contenido.
+    /// - `background-color: Colores(primario);` establece el color de fondo.
+    height: 100vh;
+    position: relative;
+    @include flexposition(row, center, center);
+    background-color: Colores(primario);
+
+    /// **Contenedor de contenido**
+    /// - Contiene el video de fondo y el texto.
+    .Content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        /// **Video de fondo**
+        /// - Usa `@include video-cover;` para adaptarlo correctamente.
+        &-video {
+            @include video-cover;
+        }
+    }
+
+    /// **Texto del Heroe**
+    /// - Se posiciona encima del video con `z-index: 1`.
+    /// - Tiene un fondo semitransparente con `rgba(Colores(primario), 0.8)`.
+    /// - Se anima con `animation: Resplandor 3s infinite ease-out forwards;`.
+    .ContentText {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        text-align: center;
+        padding: 2em;
+        background-color: rgba(Colores(primario), 0.8);
+        @include animacion-resplandor;
+
+        /// **Encabezados dentro del Heroe**
+        /// - Se colorean con `Colores(secundario);`.
+        h1, h2 {
+            color: Colores(secundario);
+        }
+    }
+
+    /// **Versión móvil**
+    /// - Cambia la dirección del `flexbox` a `column`.
+    /// - Ajusta el `margin-top` para mejorar el espaciado.
+    /// - Modifica el tamaño del texto para pantallas pequeñas.
+    @include mobile {
+        margin-top: 6em;
+        @include flexposition(column, center, center);
+
+        .Content-video {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ContentText {
+            width: 87%;
+            padding: 0.5em;
+
+            h1, h2 {
+                font-size: TamanosTexto(xl);
+            }
+        }
+    }
+}
+

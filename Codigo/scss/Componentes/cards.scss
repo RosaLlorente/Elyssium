@@ -1,0 +1,133 @@
+@use "../variables" as *;
+@use "../mixin" as *;
+
+/// **Estilos para tarjetas de productos (`.cart`)**
+/// - Aplica fondo, sombras y bordes redondeados.
+/// - Incluye efecto `hover` con `transform: scale(1.05)`.
+/// - Contiene una imagen (`.card-img`), un título (`.card-title`) y un texto (`.card-text`).
+/// - Se adapta a pantallas móviles.
+/// @author Rosa Maria Llorente Mojica
+/// @group Tarjetas
+.cart {
+    background-color: Colores(secundario);
+    border-radius: 0.5em;
+    box-shadow: 0px 4px 10px Colores(efecto2);
+    overflow: hidden;
+    width:  18.75em;
+    transition: transform 0.3s ease;
+
+    /// **Efecto `hover` para aumentar el tamaño de la tarjeta**
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    /// **Contenedor de imagen dentro de la tarjeta**
+    .card-img {
+        width: 100%;
+        height: 12.5em;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    /// **Cuerpo de la tarjeta**
+    .card-body {
+        padding: 1rem;
+
+        /// **Título de la tarjeta**
+        .card-title {
+            font-size: TamanosTexto(m);
+            color: Colores(terciario);
+            margin-bottom: 0.5rem;
+        }
+
+        /// **Texto de la tarjeta**
+        .card-text {
+            font-size: TamanosTexto(parrafos);
+            color: Colores(cuaternario);
+            font-weight: bold;
+            font-style: italic;
+            text-align: start;
+        }
+    }
+}
+
+/// **Estilos para tarjetas de ofertas (`.offer-card`)**
+/// - Diseño circular con imagen centrada.
+/// - Fondo con color cuaternario y sombra.
+/// - Contiene una imagen (`.card-img`) y texto (`.card-title`, `.card-offer`).
+/// - Se adapta a pantallas móviles.
+/// @author Rosa Maria Llorente Mojica
+/// @group Tarjetas
+.offer-card {
+    width: 12.5em;
+    height: 12.5em;
+    background-color: Colores(cuaternario);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px Colores(efecto2);
+    @include flexposition(column, center, center);
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+
+    /// **Imagen dentro de la tarjeta de oferta**
+    .card-img {
+        width: 6.25em;
+        height: 6.25em;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 1rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    /// **Contenido de la tarjeta de oferta**
+    .card-content {
+        /// **Título de la oferta**
+        .card-title {
+            font-size: TamanosTexto(s);
+            font-weight: bold;
+            color: Colores(secundario);
+        }
+
+        /// **Texto con detalles de la oferta**
+        .card-text {
+            font-size: TamanosTexto(parrafos);
+            color: Colores(terciario);
+        }
+    }
+
+    /// **Estilos específicos para móviles**
+    /// - Se reducen los tamaños de la tarjeta y la imagen.
+    /// @author Rosa Maria Llorente Mojica
+    /// @group Responsivo
+    @include mobile {
+        width: 10em;
+        height: 10em;
+
+        .card-img {
+            width: 6em;
+            height: 6em;
+        }
+
+        .card-content {
+            .card-title {
+                font-size: TamanosTexto(mobilexxs);
+            }
+
+            .card-text {
+                font-size: TamanosTexto(mobileparrafos);
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+    }
+}

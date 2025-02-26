@@ -1,0 +1,102 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+/// **Estilos del encabezado (`header`)**
+/// - Contiene el logo, la navegación y el botón de menú móvil.
+/// @author Rosa Maria Llorente Mojica
+/// @group Header
+
+header {
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    @include flexposition(row, space-between, center);
+    padding: 1rem 2rem;
+    background-color: Colores(primario);
+    color: Colores(secundario);
+
+    /// **Contenedor del logo**
+    /// - Contiene la imagen con un ancho de `4em`.
+    /// - Se ajusta al ancho de la imagen.
+    /// @author Rosa Maria Llorente Mojica
+    .logo-container {
+        width: 4em;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    /// **Botón de menú para dispositivos móviles**
+    /// - Oculto en escritorio y visible en móviles.
+    /// - Se ajusta al tamaño de la fuente definido en `TamanosTexto(m)`.
+    /// @author Rosa Maria Llorente Mojica
+    .menu-toggle {
+        font-size: TamanosTexto(m);
+        cursor: pointer;
+        display: none;
+
+        @include mobile {
+            display: block;
+        }
+    }
+
+    /// **Navegación principal**
+    /// - Se muestra en fila en escritorio y en columna en móviles.
+    /// @author Rosa Maria Llorente Mojica
+    .navegacion {
+        nav {
+            @include mobile {
+                @include mobile-menu; 
+            }
+        }
+
+        /// **Lista de navegación (`ul`)**
+        /// - Se muestra en fila en escritorio y en columna en móviles.
+        /// @author Rosa Maria Llorente Mojica
+        ul {
+            list-style: none;
+            margin-right: 2em;
+            padding: 0;
+            @include flexposition(row, flex-start, stretch);
+
+            @include mobile {
+                flex-direction: column;
+            }
+
+            /// **Elemento de la lista (`li`)**
+            li {
+                margin: 0 1rem;
+
+                @include mobile {
+                    padding: 1rem;
+                }
+            }
+
+            /// **Enlaces de navegación (`a`)**
+            /// - Se usa un mixin para definir colores y estilos.
+            /// @author Rosa Maria Llorente Mojica
+            a {
+                @include link-style(Colores(cuaternario), Colores(secundario), Colores(primario)); 
+            }
+        }
+    }
+}
+
+@include mobile {
+    header {
+        width: 89%;
+    }
+}
+
+
+
+/// **Clase `menu-open`**
+/// - Se utiliza para mostrar el menú móvil.
+/// - Usa `!important` para forzar la visibilidad.
+/// @author Rosa Maria Llorente Mojica
+.menu-open {
+    display: flex !important;
+}
