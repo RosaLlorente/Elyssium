@@ -1,6 +1,7 @@
 <h1>Screen output/Salida de pantalla</h1>
 
-![image](https://github.com/user-attachments/assets/92805282-bcd8-492a-bb34-43727e07be0b)
+![image](https://github.com/user-attachments/assets/663a0c7c-4e97-4d41-82cb-358590979abd)
+
 
 
 Ver proyecto/See project: https://elyssium-rosallorentes-projects.vercel.app/
